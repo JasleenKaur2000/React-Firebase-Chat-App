@@ -1,5 +1,4 @@
-import { useContext } from 'react';
-import React, { createContext, useState } from 'react-dom';
+import React, { createContext, useContext, useState } from 'react';
 
 const ProfileContext = createContext();
 export const ProfileProvider = ({ children }) => {
