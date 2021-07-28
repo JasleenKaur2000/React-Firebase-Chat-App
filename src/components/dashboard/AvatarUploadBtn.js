@@ -53,19 +53,25 @@ const AvatarUploadBtn = () => {
     setIsLoading(true);
     try {
       const blob = await getBlob(canvas);
+
       const avatarFileRef = storage
         .ref(`/profile/${profile.uid}`)
         .child('avatar');
+
       const uploadAvatarResult = await avatarFileRef.put(blob, {
-        cacheControl: `public,max-age=${3600 * 24 * 3}`,
+        cacheControl: `public, max-age=${3600 * 24 * 3}`,
       });
 
-      const downloadUrl = uploadAvatarResult.ref.getDownloadURL();
+      const downloadUrl = await uploadAvatarResult.ref.getDownloadURL();
+
       const userAvatarRef = database
         .ref(`/profiles/${profile.uid}`)
         .child('avatar');
+
       userAvatarRef.set(downloadUrl);
-      Alert.info(`Avatar has been uploaded`, 4000);
+
+      setIsLoading(false);
+      Alert.info('Avatar has been uploaded', 4000);
     } catch (err) {
       setIsLoading(false);
       Alert.error(err.message, 4000);
