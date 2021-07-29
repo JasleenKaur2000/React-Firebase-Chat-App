@@ -21,8 +21,6 @@ export const ProfileProvider = ({ children }) => {
             uid: authObj.uid,
             email: authObj.email,
           };
-          // eslint-disable-next-line no-console
-          console.log(data);
           setProfile(data);
           setIsLoading(false);
         });
