@@ -1,10 +1,10 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import { database } from '../misc/firebase';
 import { transformToArrWithId } from '../misc/helpers';
 
-const RoomContext = createContext();
+const RoomsContext = createContext();
 
-export const RoomProvider = ({ children }) => {
+export const RoomsProvider = ({ children }) => {
   const [rooms, setRooms] = useState(null);
 
   useEffect(() => {
@@ -19,6 +19,10 @@ export const RoomProvider = ({ children }) => {
     };
   }, []);
 
-  // eslint-disable-next-line react/react-in-jsx-scope
-  return <RoomContext.Provider value={rooms}>{children}</RoomContext.Provider>;
+  return (
+    // eslint-disable-next-line react/react-in-jsx-scope
+    <RoomsContext.Provider value={rooms}>{children}</RoomsContext.Provider>
+  );
 };
+
+export const useRooms = () => useContext(RoomsContext);
