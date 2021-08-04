@@ -29,16 +29,16 @@ const EditRoomBtnDrawer = () => {
   };
 
   const onNameSave = newName => {
-    updateData(name, newName);
+    updateData('name', newName);
   };
 
   const onDescriptionSave = newDesc => {
-    updateData(description, newDesc);
+    updateData('description', newDesc);
   };
 
   return (
     <div>
-      <Button classNmae="br-circle" size="sm" colo="red" onClick={open}>
+      <Button className="br-circle" size="sm" color="red" onClick={open}>
         A
       </Button>
       <Drawer full={isMobile} show={isOpen} onHide={close} placement="right">
