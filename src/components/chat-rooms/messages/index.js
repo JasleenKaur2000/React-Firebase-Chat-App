@@ -121,10 +121,13 @@ const Messages = () => {
     [chatId, messages]
   );
 
-  const renderMsgs = () => {
+  const renderMessages = () => {
     const groups = groupBy(messages, item =>
       new Date(item.createdAt).toDateString()
     );
+
+    // eslint-disable-next-line no-console
+    console.log('groups', groups);
 
     const items = [];
 
@@ -134,7 +137,6 @@ const Messages = () => {
           {date}
         </li>
       );
-
       const msgs = groups[date].map(msg => (
         <MessageItem
           key={msg.Id}
@@ -152,7 +154,7 @@ const Messages = () => {
   return (
     <ul className="msg-list custom-scroll">
       {isChatEmpty && <li>No messages yet....</li>}
-      {canShowMessages && renderMsgs()}
+      {canShowMessages && renderMessages()}
     </ul>
   );
 };
